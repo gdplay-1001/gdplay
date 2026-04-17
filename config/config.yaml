@@ -308,50 +308,32 @@ display:
 # • 跑通后再增加多渠道和多账号，排障成本最低
 # ===============================================================
 notification:
-  enabled: true                       # 是否启用通知功能（总开关）
-                                      # ⚠️ 开启调度系统后，此项仍为总开关：
-                                      #   false → 永远不推送（无论调度怎么设置）
-                                      #   true  → 由调度的 push 字段控制何时推送
+  notification:
+ enabled: true
+ channels:
+ feishu:
+ webhook_url: "https://open.feishu.cn/open-apis/bot/v2/hook/a266161f-d20c-404d-a0e5-6342739add14"
+ telegram:
+ bot_token: ""
+ chat_id: ""
+ email:
+ from: ""
+ password: ""
+ to: ""
+ dingtalk:
+ webhook_url: ""
+ wework:
+ webhook_url: ""
+ ntfy:
+ topic: ""
+ token: ""
+ bark:
+ url: ""
+ slack:
+ webhook_url: ""
+ generic_webhook:
+ webhook_url: ""
 
-  # 推送渠道配置
-  channels:
-    feishu:
-      webhook_url: ""                 # 飞书机器人 webhook URL
-
-    dingtalk:
-      webhook_url: ""                 # 钉钉机器人 webhook URL
-
-    wework:
-      webhook_url: ""                 # 企业微信机器人 webhook URL
-      msg_type: "markdown"            # 消息类型：markdown(群机器人) | text(个人微信应用)
-
-    telegram:
-      bot_token: ""                   # Telegram Bot Token
-      chat_id: ""                     # Telegram Chat ID
-
-    email:
-      from: ""                        # 发件人邮箱地址
-      password: ""                    # 发件人邮箱密码或授权码
-      to: ""                          # 收件人邮箱，多个用逗号分隔
-      smtp_server: ""                 # SMTP 服务器（可选，留空自动识别）
-      smtp_port: ""                   # SMTP 端口（可选，留空自动识别）
-
-    ntfy:
-      server_url: "https://ntfy.sh"   # ntfy 服务器地址（可改为自托管）
-      topic: ""                       # ntfy 主题名称
-      token: ""                       # ntfy 访问令牌（可选，用于私有主题）
-
-    bark:
-      url: ""                         # Bark 推送 URL（格式：https://api.day.app/your_device_key）
-
-    slack:
-      webhook_url: ""                 # Slack Incoming Webhook URL
-
-    generic_webhook:
-      webhook_url: ""                 # 通用 Webhook URL（支持 Discord、Matrix、IFTTT 等）
-      payload_template: ""            # JSON 模板，支持 {title} 和 {content} 占位符
-                                      # 示例：{"content": "{content}"}
-                                      # 留空则使用默认格式：{"title": "{title}", "content": "{content}"}
 
 
 # ===============================================================
@@ -468,7 +450,7 @@ ai:
 # 模型配置见上方 ai 配置段
 # ===============================================================
 ai_analysis:
-  enabled: true                     # 是否启用 AI 分析（总开关）
+  enabled: false                     # 是否启用 AI 分析（总开关）
                                     # ⚠️ 开启调度系统后，此项仍为总开关：
                                     #   false → 永远不分析（无论调度怎么设置）
                                     #   true  → 由调度的 analyze 字段控制何时分析
@@ -527,7 +509,7 @@ ai_analysis:
 # 模型配置见上方 ai 配置段
 # ===============================================================
 ai_translation:
-  enabled: true                    # 是否启用翻译功能
+  enabled: false                    # 是否启用翻译功能
 
   # 翻译目标语言
   # 格式：自然语言描述
@@ -594,3 +576,4 @@ advanced:
     slack: 4000
   batch_send_interval: 3              # 批次发送间隔（秒）
   feishu_message_separator: "━━━━━━━━━━━━━━━━"
+
